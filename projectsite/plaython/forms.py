@@ -7,7 +7,7 @@ import re
 class PostForm(ModelForm):
 
     OK = ((True, 'OK'),)
-    aggrement = forms.BooleanField(widget=forms.RadioSelect(choices=OK))
+    agreement = forms.BooleanField(widget=forms.RadioSelect(choices=OK))
 
     class Meta:
         model = Applicant
