@@ -18,7 +18,7 @@ def createForm(request):
     else:
             form = PostForm()
 
-    return render(request, 'playton/form.html', {'form':form})
+    return render(request, 'plaython/form.html', {'form':form})
 
 
 def makeRandomString():
