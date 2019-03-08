@@ -20,5 +20,5 @@ class Applicant(models.Model):
         return self.name
 
     def generate(self):
-        return self.save
+        return self.save()
 

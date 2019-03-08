@@ -17,7 +17,7 @@ class PostForm(ModelForm):
         username = self.cleaned_data['username']
         special_case = re.findall("[^a-zA-Z0-9]", username)
 
-        if special_caes:
+        if special_case:
             raise forms.ValidationError("Do not use special characters(@,#,$,%)")
 
         if Applicant.objects.filter(username=username).exists():

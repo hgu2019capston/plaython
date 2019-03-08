@@ -1,7 +1,7 @@
 import subprocess
 import crypt
 
-sudopwd = "codud0724"
+sudopwd = "default00"
 
 def adduser(username, pwd):
     
@@ -10,7 +10,7 @@ def adduser(username, pwd):
 
     password = crypt.crypt(pwd, "22")
 
-    p = subprocess.Popen(commane + [password, username], stdin=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
+    p = subprocess.Popen(command + [password, username], stdin=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
     p.communicate(sudopwd + '\n')[1]
 
 def deluser(username):

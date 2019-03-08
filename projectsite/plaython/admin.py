@@ -15,10 +15,10 @@ class ApplicantAdmin(admin.ModelAdmin):
 
     def setPermission(self, request, queryset):
         for applicant in queryset:
-            adduser(applicant.username, applicant.passwd)
+            adduser(applicant.username, applicant.password)
             Applicant.objects.filter(name=applicant.name).update(permission=2)
 
-        messages.sucess(request, '{0}명의 회원을 인증했습니다.'.format(len(queryset)))
+        messages.success(request, '{0}명의 회원을 인증했습니다.'.format(len(queryset)))
     
     setPermission.short_description = "선택된 계정 생성하기"
 
@@ -27,7 +27,7 @@ class ApplicantAdmin(admin.ModelAdmin):
             deluser(applicant.username)
             Applicant.objects.filter(name=applicant.name).delete()
 
-        messages.sucess(request, '{0}명의 회원을 삭제했습니다.'.format(len(queryset)))
+        messages.success(request, '{0}명의 회원을 삭제했습니다.'.format(len(queryset)))
 
     deleteUser.short_description = "선택된 계정 삭제하기"
     

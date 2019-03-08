@@ -8,7 +8,7 @@ import random, string
 def createForm(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
-        if form.is_vaild():
+        if form.is_valid():
             applicant = form.save()
             applicant.password = makeRandomString()
             applicant.generate()
