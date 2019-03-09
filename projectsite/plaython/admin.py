@@ -16,7 +16,7 @@ class ApplicantAdmin(admin.ModelAdmin):
     def setPermission(self, request, queryset):
         for applicant in queryset:
             adduser(applicant.username, applicant.password)
-            Applicant.objects.filter(name=applicant.name).update(permission=2)
+            Applicant.objects.filter(username=applicant.username).update(permission=2)
 
         messages.success(request, '{0}명의 회원을 인증했습니다.'.format(len(queryset)))
     
@@ -25,7 +25,7 @@ class ApplicantAdmin(admin.ModelAdmin):
     def deleteUser(self, request, queryset):
         for applicant in queryset:
             deluser(applicant.username)
-            Applicant.objects.filter(name=applicant.name).delete()
+            Applicant.objects.filter(username=applicant.username).delete()
 
         messages.success(request, '{0}명의 회원을 삭제했습니다.'.format(len(queryset)))
 
@@ -35,6 +35,10 @@ class ApplicantAdmin(admin.ModelAdmin):
         if(obj.permission == 2):
             adduser(obj.username, obj.password)
         obj.save()
+
+    def delete_model(self, request, obj):
+        deluser(obj.username)
+        obj.delete()
 
 admin.site.disable_action('delete_selected')
 admin.site.register(Applicant, ApplicantAdmin)
