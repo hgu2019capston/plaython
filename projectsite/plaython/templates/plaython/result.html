@@ -1,17 +1,27 @@
 <!doctype html>
 <html lang = "en">
   <head>
+  <style>
+  div.a {
+    text-align: center;
+  }
+  h5 {
+    color: red;
+  }
+  </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, inital-sclae=1">
 
-    <title> Saved Successfuly! </title>
+    <title> Saved </title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
-    <h1> Your server account passwd : {{user_pwd}} </h1>
-    <h2> You have to keep this with screen capture or something. </h2>
+    <div class="a">
+    <h1> Submitted successfully! </h1>
+    <h4> Your server account password : <h5>{{user_pwd}} </h5></h4>
+    <h4> You have to keep this with screen capture or something. </h2>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

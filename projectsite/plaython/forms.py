@@ -11,7 +11,8 @@ class PostForm(ModelForm):
 
     class Meta:
         model = Applicant
-        fields = ['name','student_number','email','phone_number','usage','username','agreement']
+        fields = ['name','student_number','email','phone_number','usage','username', 'agreement','I_agree']
+        widgets = {'agreement': forms.Textarea(attrs={'rows':3, 'cols':15}),}
 
     def clean_username(self):
         username = self.cleaned_data['username']
@@ -23,7 +24,7 @@ class PostForm(ModelForm):
         if Applicant.objects.filter(username=username).exists():
             raise forms.ValidationError("The username is already in use")
 
-        if subprocess.call(['grep', username, '/etc/passwd']) == 0:
+        if subprocess.call(['grep','-w', username, '/etc/passwd']) == 0:
             raise forms.ValidationError("The username is already in use")
 
         return username
