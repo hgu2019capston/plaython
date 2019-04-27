@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Applicant
 from django.contrib import messages
 from .serverUser import *
-from django.utils.safestring import mark_safe
+#from django.utils.safestring import mark_safe
 
 class ApplicantAdmin(admin.ModelAdmin):
 
@@ -19,8 +19,10 @@ class ApplicantAdmin(admin.ModelAdmin):
             Applicant.objects.filter(username=applicant.username).update(permission=2)
 
         messages.success(request, '{0}명의 회원을 인증했습니다.'.format(len(queryset)))
-    
+
     setPermission.short_description = "선택된 계정 생성하기"
+    
+
 
     def deleteUser(self, request, queryset):
         for applicant in queryset:
