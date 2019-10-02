@@ -27,13 +27,16 @@ class ApplicantAdmin(admin.ModelAdmin):
     def deleteUser(self, request, queryset):
         for applicant in queryset:
             deluser(applicant.username)
-            Applicant.objects.filter(username=applicant.username).delete()
+            Applicant.objects.filter(username=applicant.username).update(permission=1)
+#            Applicant.objects.filter(username=applicant.username).delete()
 
         messages.success(request, '{0}명의 회원을 삭제했습니다.'.format(len(queryset)))
 
     deleteUser.short_description = "선택된 계정 삭제하기"
     
     def save_model(self, request, obj, form, change):
+        if(obj.permission == 1):
+            deluser(obj.username)
         if(obj.permission == 2):
             adduser(obj.username, obj.password)
         obj.save()
